@@ -61,7 +61,10 @@ sub get_buffer_address {
 #               $size_of_each_item - Size of each item in the buffer
 #               $init_value        - Value to initialize the buffer with
 # Throws      : Croaks if the buffer allocation fails
-# Comments    : None
+# Comments    : While not used here, Task::MemManager will pass the opts of
+#               the constructor to malloc as the third parameter. 
+# See Also    : n/a
+#
 # See Also    : n/a
 
 sub malloc {
