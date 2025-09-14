@@ -4,7 +4,7 @@ Task::MemManager::CMalloc - Allocates buffers using C's malloc
 
 # VERSION
 
-version 0.02
+version 0.03
 
 # SYNOPSIS
 
@@ -47,8 +47,11 @@ functions directly.
 
 # DIAGNOSTICS
 
-There are no diagnostics that one can use. The module will croak if the
+There are no diagnostics that one can use. The module will die if the
 allocation fails, so you don't have to worry about error handling. 
+If you set up the environment variable DEBUG to a non-zero value, then
+a number of sanity checks will be performed, and the module will die
+with an (informative message ?) if something is wrong.
 
 # DEPENDENCIES
 
