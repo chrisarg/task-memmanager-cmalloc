@@ -4,7 +4,7 @@ Task::MemManager::CMalloc - Allocates buffers using C's malloc
 
 # VERSION
 
-version 0.03
+version 0.04
 
 # SYNOPSIS
 
@@ -45,6 +45,19 @@ functions directly.
 
     Returns the memory address of the buffer as a Perl scalar.
 
+- `consume($external_buffer_ref, $length)`
+
+    Consumes an external buffer, whose address is stored in a scalar variable, with 
+    the latter passed as a reference to simulate pass-by-reference in C). The length 
+    of the buffer should be provide. The value of the reference to the address of 
+    the external buffer is then zeroed out to prevent double free from a subsequent 
+    call to C's free. Internally C's realloc is used to grow/shrink the buffer to
+    the desired length, and thus an implicit copy may be made. If realloc returns
+    NULL, then a warning is issued that the user should not assume that the requested
+    buffer length is correct.
+    Note that the `$external_buffer` should be a valid Perl integer, otherwise the
+    consumption will fail.
+
 # DIAGNOSTICS
 
 There are no diagnostics that one can use. The module will die if the
@@ -57,6 +70,10 @@ with an (informative message ?) if something is wrong.
 
 The module depends on the `Inline::C` module to compile the C code for 
 the memory allocation and deallocation functions.
+
+# TODO
+
+None I can think of, but open to suggestions. 
 
 # SEE ALSO
 
